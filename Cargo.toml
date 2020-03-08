@@ -2,7 +2,7 @@
 
 members = ["projects/*"]
 default-members = [
-#   "projects/colc-cli",  #   don't build and test in CI
+    "projects/colc-cli",
     "projects/cloc-lib",
 ]
 
