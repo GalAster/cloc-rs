@@ -59,3 +59,15 @@ Export[
     Alignment -> Right,
     "TableHeadings" -> {a1, a2, a3, a4, b1, b2, b3, b4}
 ]
+
+
+sol4 = Solve[
+{
+n a b == 10 a + b,
+n>0,
+a>0,
+0<=b<=9
+},
+{n,a,b},
+Integers
+]

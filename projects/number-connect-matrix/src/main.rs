@@ -1,5 +1,5 @@
-use cloc_lib::tokei;
 
 fn main() {
-    tokei(".")
+
+    print!("Hello World!")
 }
