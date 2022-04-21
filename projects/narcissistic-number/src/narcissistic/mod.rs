@@ -11,14 +11,14 @@ pub use self::searcher::NarcissisticSearcher;
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct NarcissisticNumber {
-    base: usize,
+    base: u8,
     number: BigUint,
 }
 
 pub fn narcissistic_numbers(base: u8) -> Box<dyn Iterator<Item = NarcissisticNumber>> {
     macro_rules! box_number {
         ($t:tt) => {
-            Box::new($t.iter().map(move |u| NarcissisticNumber::new(*u, base)))
+            Box::new($t.iter().map(move |u| NarcissisticNumber::new_unchecked(*u, base)))
         };
     }
     match base {
