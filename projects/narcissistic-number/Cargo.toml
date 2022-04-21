@@ -1,15 +1,14 @@
 [package]
 name = "narcissistic"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Aster <192607617@qq.com>"]
 description = "Narcissistic number searcher"
 repository = "https://github.com/oovm/number-connect"
 documentation = "https://docs.rs/narcissistic"
 readme = "Readme.md"
 license = "MPL-2.0"
-categories = ["game"]
+categories = ["algorithms"]
 edition = "2021"
 
 [dependencies]
 num = "0.4.0"
-convert-base = "1.1.2"

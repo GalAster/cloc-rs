@@ -13,8 +13,7 @@ impl Display for NarcissisticNumber {
                     _ => unreachable!(),
                 }
             }
-        }
-        else {
+        } else {
             write!(f, "{:?}_{{{}}}", digits, self.base)?
         }
         Ok(())
@@ -31,21 +30,24 @@ impl PartialOrd for NarcissisticNumber {
 }
 
 impl NarcissisticNumber {
-    pub fn new<N: Into<BigUint>>(n: N, base: u8) -> Option<Self> {
+    /// Try to construct a new narcissistic number.
+    ///
+    /// Return `None` if the number is invalid.
+    pub fn new<N: Into<BigUint>>(n: N, base: usize) -> Option<Self> {
         let n = Self::new_unchecked(n.into(), base);
         match n.is_valid() {
             true => Some(n),
             false => None,
         }
     }
-
+    /// Expand the narcissistic number into digits
     pub fn as_digits(self) -> VecDeque<u8> {
         uint_to_digits(self.number, self.base)
     }
 }
 
 impl NarcissisticNumber {
-    pub(crate) fn new_unchecked<N: Into<BigUint>>(n: N, base: u8) -> Self {
+    pub(crate) fn new_unchecked<N: Into<BigUint>>(n: N, base: usize) -> Self {
         Self { base, number: n.into() }
     }
     pub(crate) fn is_valid(&self) -> bool {
@@ -55,7 +57,7 @@ impl NarcissisticNumber {
     }
 }
 
-fn uint_to_digits(n: BigUint, base: u8) -> VecDeque<u8> {
+fn uint_to_digits(n: BigUint, base: usize) -> VecDeque<u8> {
     let base = BigUint::from(base);
     let mut out = VecDeque::default();
     // bug?

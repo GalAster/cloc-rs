@@ -7,9 +7,9 @@ repository = "https://github.com/oovm/number-connect"
 documentation = "https://docs.rs/narcissistic"
 readme = "Readme.md"
 license = "MPL-2.0"
-categories = ["game"]
+categories = ["algorithms"]
 edition = "2021"
 
 [dependencies]
 num = "0.4.0"
-narcissistic = "0.1.0"
+narcissistic = "0.2.1"
