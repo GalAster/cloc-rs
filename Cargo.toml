@@ -2,7 +2,7 @@
 
 members = ["projects/*"]
 default-members = [
-    "projects/colc-cli",
+    "projects/narcissistic-number",
     "projects/cloc-lib",
 ]
 

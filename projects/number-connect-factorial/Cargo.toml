@@ -1,0 +1,20 @@
+[package]
+name = "number-connect-factorial"
+version = "0.1.0"
+authors = ["Aster <192607617@qq.com>"]
+description = "Number Connet Puzzle of Matrix Form"
+repository = "https://github.com/oovm/number-connect"
+documentation = "https://docs.rs/number-connect-matrix"
+readme = "Readme.md"
+license = "MPL-2.0"
+categories = ["games"]
+
+edition = "2021"
+include = [
+    "data/**/*",
+    "src/**/*",
+    "Cargo.toml",
+]
+
+
+[dependencies]

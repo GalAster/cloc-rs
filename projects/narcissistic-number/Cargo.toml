@@ -1,0 +1,14 @@
+[package]
+name = "narcissistic"
+version = "0.1.0"
+authors = ["Aster <192607617@qq.com>"]
+description = "Number Connet Puzzle of Matrix Form"
+repository = "https://github.com/oovm/number-connect"
+documentation = "https://docs.rs/narcissistic"
+readme = "Readme.md"
+license = "MPL-2.0"
+categories = ["games"]
+edition = "2021"
+
+[dependencies]
+num = "0.4.0"
