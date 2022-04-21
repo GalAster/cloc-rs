@@ -1,4 +1,4 @@
-use num::{bigint::ToBigUint, BigUint};
+use num::BigUint;
 
 mod hardcode;
 mod searcher;
