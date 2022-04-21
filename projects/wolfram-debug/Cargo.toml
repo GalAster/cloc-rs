@@ -1,5 +1,6 @@
 [package]
-name = "cloc-lib"
+name = "debug"
+release = false
 version = "0.1.0"
 authors = ["Aster <192607617@qq.com>"]
 description = "..."
@@ -8,9 +9,10 @@ readme = "README.md"
 license = "MPL-2.0"
 edition = "2018"
 
+[lib]
+name = "debug"
+crate-type = ["cdylib"]
+
 [dependencies]
-syntect = "3.2"
-lazy_static = "1.4.0"
-carbon-dump = "1.1.0"
-walkdir = "2.3.1"
-tokei = "10.1.2"
+wolfram-library-link = "0.2.3"
+num = "0.4.0"

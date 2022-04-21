@@ -1,4 +1,4 @@
-use crate::{BASE10, BASE2, BASE3, BASE4, BASE5, BASE6, BASE7, BASE8, BASE9};
+use crate::{base11, base12, base13, base14, base15, base16, BASE10, BASE2, BASE3, BASE4, BASE5, BASE6, BASE7, BASE8, BASE9};
 use num::BigUint;
 use std::{
     cmp::Ordering,
@@ -11,14 +11,14 @@ pub use self::searcher::NarcissisticSearcher;
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct NarcissisticNumber {
-    base: u8,
-    number: BigUint,
+    pub base: u8,
+    pub number: BigUint,
 }
 
 pub fn narcissistic_numbers(base: u8) -> Box<dyn Iterator<Item = NarcissisticNumber>> {
     macro_rules! box_number {
-        ($t:tt) => {
-            Box::new($t.iter().map(move |u| NarcissisticNumber::new_unchecked(*u, base)))
+        ($t:expr) => {
+            Box::new($t.into_iter().map(|u| NarcissisticNumber::new_unchecked(u.clone(), base.clone())))
         };
     }
     match base {
@@ -32,6 +32,12 @@ pub fn narcissistic_numbers(base: u8) -> Box<dyn Iterator<Item = NarcissisticNum
         8 => box_number!(BASE8),
         9 => box_number!(BASE9),
         10 => box_number!(BASE10),
+        11 => box_number!(base11()),
+        12 => box_number!(base12()),
+        13 => box_number!(base13()),
+        14 => box_number!(base14()),
+        15 => box_number!(base15()),
+        16 => box_number!(base16()),
         _ => Box::new(NarcissisticSearcher::new(base)),
     }
 }

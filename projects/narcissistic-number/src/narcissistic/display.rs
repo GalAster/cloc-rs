@@ -1,16 +1,21 @@
 use super::*;
-use num::{Integer, ToPrimitive};
+use num::{Integer, ToPrimitive, Zero};
+use std::{collections::VecDeque, fmt::Write};
 
 impl Display for NarcissisticNumber {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let digits = self.clone().as_digits();
         if self.base <= 36 || !f.alternate() {
             for i in self.clone().as_digits() {
-                write!(f, "{}", i)?
+                match i {
+                    x @ 0..=9 => f.write_char((b'0' + x) as char)?,
+                    x @ 10..=36 => f.write_char((b'A' + (x - 10)) as char)?,
+                    _ => unreachable!(),
+                }
             }
         }
         else {
-            write!(f, "{:?}_{}", digits, self.base)?
+            write!(f, "{:?}_{{{}}}", digits, self.base)?
         }
         Ok(())
     }
@@ -34,7 +39,7 @@ impl NarcissisticNumber {
         }
     }
 
-    pub fn as_digits(self) -> Vec<u8> {
+    pub fn as_digits(self) -> VecDeque<u8> {
         uint_to_digits(self.number, self.base)
     }
 }
@@ -50,25 +55,20 @@ impl NarcissisticNumber {
     }
 }
 
-fn uint_to_digits(n: BigUint, base: u8) -> Vec<u8> {
+fn uint_to_digits(n: BigUint, base: u8) -> VecDeque<u8> {
     let base = BigUint::from(base);
-    let mut out = vec![];
-    let (mut rest, mut digit) = n.div_mod_floor(&base);
+    let mut out = VecDeque::default();
+    // bug?
+    #[allow(unused_assignments)]
+    let (mut rest, mut digit) = (n, BigUint::zero());
     while !rest.le(&base) {
         (rest, digit) = rest.div_mod_floor(&base);
         unsafe {
-            println!("{} {}", rest, digit);
-            out.push(digit.clone().to_u8().unwrap_unchecked());
+            out.push_front(digit.clone().to_u8().unwrap_unchecked());
         }
     }
     unsafe {
-        println!("{} {}", rest, digit);
-        out.push(digit.clone().to_u8().unwrap_unchecked());
+        out.push_front(rest.clone().to_u8().unwrap_unchecked());
     }
-    out.into_iter().rev().collect()
-}
-
-#[test]
-fn test() {
-    println!("{:?}", uint_to_digits(BigUint::from(12345usize), 10));
+    out
 }

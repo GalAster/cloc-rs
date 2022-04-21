@@ -1,11 +1,14 @@
+/// All base-2 Narcissistic Number store as base-10
 pub const BASE2: [u8; 1] = [1];
-
+/// All base-3 Narcissistic Number store as base-10
 pub const BASE3: [u8; 5] = [1, 2, 5, 8, 17];
-
+/// All base-4 Narcissistic Number store as base-10
 pub const BASE4: [u8; 11] = [1, 2, 3, 28, 29, 35, 43, 55, 62, 83, 243];
-
+/// All base-5 Narcissistic Number store as base-10
 pub const BASE5: [u32; 17] = [1, 2, 3, 4, 13, 18, 28, 118, 289, 353, 419, 4890, 4891, 9113, 1874374, 338749352, 2415951874];
-
+/// All base-6 Narcissistic Number store as base-10
+///
+/// Download from: http://oeis.org/A010348/b010348.txt
 pub const BASE6: [u64; 30] = [
     1,
     2,
@@ -38,7 +41,9 @@ pub const BASE6: [u64; 30] = [
     5341093125745,
     19418246235419,
 ];
-
+/// All base-7 Narcissistic Number store as base-10
+///
+/// Download from: http://oeis.org/A010350/b010350.txt
 pub const BASE7: [u64; 59] = [
     1,
     2,
@@ -100,7 +105,9 @@ pub const BASE7: [u64; 59] = [
     4798127097158078160,
     5528252581301500133,
 ];
-
+/// All base-8 Narcissistic Number store as base-10
+///
+/// Download from: http://oeis.org/A010354/b010354.txt
 pub const BASE8: [u128; 62] = [
     1,
     2,
@@ -165,7 +172,9 @@ pub const BASE8: [u128; 62] = [
     8190353550123835479596,
     22576559626136290521807162,
 ];
-
+/// All base-9 Narcissistic Number store as base-10
+///
+/// Download from: http://oeis.org/A010353/b010353.txt
 pub const BASE9: [u128; 58] = [
     1,
     2,
@@ -226,7 +235,9 @@ pub const BASE9: [u128; 58] = [
     4997059916255135935307115147,
     4997059916255135935307115148,
 ];
-
+/// All base-10 Narcissistic Number store as base-10
+///
+/// Download from: http://oeis.org/A005188/b005188.txt
 pub const BASE10: [u128; 88] = [
     1,
     2,

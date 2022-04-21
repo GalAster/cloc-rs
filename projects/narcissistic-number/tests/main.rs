@@ -5,7 +5,7 @@ use std::str::FromStr;
 
 #[test]
 fn narcissistic_base10() {
-    for (i, n) in narcissistic_numbers(10).enumerate() {
+    for (i, n) in narcissistic_numbers(16).enumerate() {
         println!("#{}: {}", i + 1, n);
     }
 }
