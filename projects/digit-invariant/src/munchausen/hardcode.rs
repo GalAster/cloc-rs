@@ -6,4 +6,12 @@ pub const BASE4: [u8; 5] = [0, 1, 28, 29, 55];
 
 pub const BASE5: [u16; 4] = [0, 1, 28, 264];
 
+pub const BASE6: [u16; 4] = [0, 1, 3164, 3416];
+
+pub const BASE7: [u16; 4] = [0, 1, 28, 264];
+
+pub const BASE8: [u16; 4] = [0, 1, 28, 264];
+
+pub const BASE9: [u16; 4] = [0, 1, 28, 264];
+
 pub const BASE10: [u32; 4] = [0, 1, 3435, 438579088];

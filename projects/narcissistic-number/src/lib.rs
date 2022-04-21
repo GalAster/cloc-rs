@@ -1,3 +1,5 @@
+#![feature(generators)]
+
 mod hardcode;
 mod narcissistic;
 

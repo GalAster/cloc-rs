@@ -7,8 +7,8 @@ pub struct NarcissisticSearcher {
 }
 
 impl NarcissisticSearcher {
-    pub fn new(base: usize) -> Self {
-        Self { base, digits: 0 }
+    pub fn new(base: u8) -> Self {
+        Self { base: base as usize, digits: 0 }
     }
 
     pub fn is_valid(&self, n: &BigUint) -> bool {
@@ -40,7 +40,7 @@ impl NarcissisticSearcher {
 }
 
 impl Iterator for NarcissisticSearcher {
-    type Item = BigUint;
+    type Item = NarcissisticNumber;
 
     fn next(&mut self) -> Option<Self::Item> {
         todo!()
