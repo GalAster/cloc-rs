@@ -6,6 +6,10 @@ mod searcher;
 use self::hardcode::*;
 pub use self::searcher::PluperfectDigitalInvariantSearcher;
 
+pub fn narcissistic_numbers() -> impl Iterator<Item = BigUint> {
+    pluperfect_digital_invariant(10)
+}
+
 pub fn pluperfect_digital_invariant(base: usize) -> Box<dyn Iterator<Item = BigUint>> {
     match base {
         0 | 1 => panic!("base {} doesn't a valid base", base),
