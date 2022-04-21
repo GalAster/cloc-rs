@@ -1,6 +1,6 @@
 [package]
-name = "narcissistic"
-version = "0.1.1"
+name = "digit-invariant"
+version = "0.1.0"
 authors = ["Aster <192607617@qq.com>"]
 description = "Narcissistic number searcher"
 repository = "https://github.com/oovm/number-connect"
@@ -12,3 +12,4 @@ edition = "2021"
 
 [dependencies]
 num = "0.4.0"
+narcissistic = "0.1.0"

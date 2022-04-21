@@ -1,5 +1,5 @@
-mod munchausen;
+mod hardcode;
 mod narcissistic;
 
-pub use munchausen::munchausen_numbers;
-pub use narcissistic::{narcissistic_numbers, pluperfect_digital_invariant, PluperfectDigitalInvariantSearcher};
+pub use self::hardcode::*;
+pub use narcissistic::{narcissistic_numbers, NarcissisticSearcher};

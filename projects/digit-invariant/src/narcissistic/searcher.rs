@@ -1,12 +1,11 @@
 use super::*;
 
-#[allow(dead_code)]
-pub struct NarcissisticSearcher {
+pub struct PluperfectDigitalInvariantSearcher {
     base: usize,
     digits: usize,
 }
 
-impl NarcissisticSearcher {
+impl PluperfectDigitalInvariantSearcher {
     pub fn new(base: usize) -> Self {
         Self { base, digits: 0 }
     }
@@ -39,7 +38,7 @@ impl NarcissisticSearcher {
     }
 }
 
-impl Iterator for NarcissisticSearcher {
+impl Iterator for PluperfectDigitalInvariantSearcher {
     type Item = BigUint;
 
     fn next(&mut self) -> Option<Self::Item> {

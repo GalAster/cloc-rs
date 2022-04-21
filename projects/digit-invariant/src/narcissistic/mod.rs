@@ -1,11 +1,16 @@
-use crate::{BASE10, BASE2, BASE3, BASE4, BASE5, BASE6, BASE7, BASE8, BASE9};
 use num::BigUint;
 
+mod hardcode;
 mod searcher;
 
-pub use self::searcher::NarcissisticSearcher;
+use self::hardcode::*;
+pub use self::searcher::PluperfectDigitalInvariantSearcher;
 
-pub fn narcissistic_numbers(base: usize) -> Box<dyn Iterator<Item = BigUint>> {
+pub fn narcissistic_numbers() -> impl Iterator<Item = BigUint> {
+    pluperfect_digital_invariant(10)
+}
+
+pub fn pluperfect_digital_invariant(base: usize) -> Box<dyn Iterator<Item = BigUint>> {
     match base {
         0 | 1 => panic!("base {} doesn't a valid base", base),
         2 => Box::new(BASE2.iter().map(|u| BigUint::from(*u))),
@@ -17,6 +22,6 @@ pub fn narcissistic_numbers(base: usize) -> Box<dyn Iterator<Item = BigUint>> {
         8 => Box::new(BASE8.iter().map(|u| BigUint::from(*u))),
         9 => Box::new(BASE9.iter().map(|u| BigUint::from(*u))),
         10 => Box::new(BASE10.iter().map(|u| BigUint::from(*u))),
-        _ => Box::new(NarcissisticSearcher::new(base)),
+        _ => Box::new(PluperfectDigitalInvariantSearcher::new(base)),
     }
 }
