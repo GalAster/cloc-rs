@@ -1,3 +1,3 @@
-pub use crate::steps::{MultiplicationSteps, ShiftAdd, v_mul_detailed, v_mul_short};
+pub use crate::steps::{v_mul, v_mul_detailed, MultiplicationSteps, ShiftAdd};
 
 mod steps;

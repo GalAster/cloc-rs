@@ -3,32 +3,28 @@ use super::*;
 impl Display for MultiplicationSteps {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let max_indent = self.max_digits() + 2;
-        let a_len = self.a.to_str_radix(self.base).len();
-        let b_len = self.b.to_str_radix(self.base).len();
-        writeln!(f, "{space}{}", self.a, space = " ".repeat(max_indent - a_len + 2))?;
-        writeln!(f, " ×{space}{}", self.b, space = " ".repeat(max_indent - b_len))?;
+        let a = self.lhs.to_str_radix(self.base);
+        let b = self.rhs.to_str_radix(self.base);
+        let r = self.result.to_str_radix(self.base);
+        writeln!(f, "{space}{}", a, space = " ".repeat(max_indent - a.len() + 2))?;
+        writeln!(f, " ×{space}{}", b, space = " ".repeat(max_indent - b.len()))?;
         writeln!(f, "{}", "-".repeat(max_indent + 3))?;
         for (i, add) in self.steps.iter().enumerate() {
             if i == 0 {
-                writeln!(f, "{}", add.pretty_format(max_indent, " = "))?;
-            } else {
-                writeln!(f, "{}", add.pretty_format(max_indent, " + "))?;
+                writeln!(f, "{}", add.pretty_format(max_indent, " = ", self.base))?;
+            }
+            else {
+                writeln!(f, "{}", add.pretty_format(max_indent, " + ", self.base))?;
             }
         }
         writeln!(f, "{}", "-".repeat(max_indent + 3))?;
-        writeln!(f, " ={space}{result}", space = " ".repeat(2), result = self.result)
+        write!(f, " ={space}{result}", space = " ".repeat(2), result = r)
     }
 }
 
 impl MultiplicationSteps {
     pub fn new(a: &BigInt, b: &BigInt) -> MultiplicationSteps {
-        Self {
-            a: a.clone(),
-            b: b.clone(),
-            steps: vec![],
-            result: a.mul(b),
-            base: 10,
-        }
+        Self { lhs: a.clone(), rhs: b.clone(), steps: vec![], result: a.mul(b), base: 10 }
     }
     pub fn with_base(mut self, base: u32) -> Self {
         self.base = base;
@@ -39,6 +35,6 @@ impl MultiplicationSteps {
     }
 
     pub fn max_digits(&self) -> usize {
-        self.steps.iter().map(|x| x.count_digits()).max().unwrap_or(0)
+        self.steps.iter().map(|x| x.count_digits(self.base)).max().unwrap_or(0)
     }
 }

@@ -1,10 +1,8 @@
-use std::fmt::Write as _;
-use std::fs::File;
-use std::io::Write;
+use std::{fmt::Write as _, fs::File, io::Write};
 
 use num::BigInt;
 
-use vertical_multiplication::v_mul_short;
+use vertical_multiplication::v_mul;
 
 #[test]
 fn ready() {
@@ -14,7 +12,7 @@ fn ready() {
 #[test]
 fn test() {
     let mut out = File::create("out.md").unwrap();
-    let mut n = BigInt::from(2);
+    let mut n = BigInt::from(3);
     for step in 1..=5 {
         let (i, s) = power2(&n, step);
         n = i;
@@ -26,7 +24,7 @@ fn power2(n: &BigInt, step: usize) -> (BigInt, String) {
     let mut out = format!("## 第 {} 步\n", step);
     writeln!(out, "```js").unwrap();
     let i = n.pow(2);
-    writeln!(out, "{}", v_mul_short(&n, &n)).unwrap();
+    writeln!(out, "{}", v_mul(&n, &n, 12)).unwrap();
     writeln!(out, "```\n\n").unwrap();
     (i, out)
 }

@@ -5,14 +5,14 @@ use std::{
 
 use num::{BigInt, Integer, Signed, ToPrimitive};
 
-mod steps;
 mod shift_add;
+mod steps;
 
 #[derive(Debug)]
 pub struct MultiplicationSteps {
     base: u32,
-    a: BigInt,
-    b: BigInt,
+    lhs: BigInt,
+    rhs: BigInt,
     result: BigInt,
     steps: Vec<ShiftAdd>,
 }
@@ -25,12 +25,11 @@ pub struct ShiftAdd {
     tail_digits: usize,
 }
 
-
 /// Vertical multiplication
 pub fn v_mul_detailed(a: &BigInt, b: &BigInt, base: u32) -> MultiplicationSteps {
     let lhs = get_digits_rev(a, base);
     let rhs = get_digits_rev(b, base);
-    let mut steps = MultiplicationSteps::new(a, b);
+    let mut steps = MultiplicationSteps::new(a, b).with_base(base);
     for (tail_rhs, dx) in rhs.iter().enumerate() {
         for (tail_lhs, dy) in lhs.iter().enumerate() {
             steps.push_step(ShiftAdd::new(dx.mul(dy), tail_rhs + tail_lhs))
@@ -39,10 +38,9 @@ pub fn v_mul_detailed(a: &BigInt, b: &BigInt, base: u32) -> MultiplicationSteps 
     steps
 }
 
-
-pub fn v_mul_short(a: &BigInt, b: &BigInt, base: u32) -> MultiplicationSteps {
+pub fn v_mul(a: &BigInt, b: &BigInt, base: u32) -> MultiplicationSteps {
     let rhs = get_digits_rev(b, base);
-    let mut steps = MultiplicationSteps::new(a, b);
+    let mut steps = MultiplicationSteps::new(a, b).with_base(base);
     for (tail_rhs, dy) in rhs.iter().enumerate() {
         steps.push_step(ShiftAdd::new(a.mul(BigInt::from(*dy)), tail_rhs))
     }
