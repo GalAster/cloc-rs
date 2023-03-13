@@ -5,10 +5,10 @@ use std::io::Write;
 
 use num::{BigInt, Integer, Signed, ToPrimitive};
 
-use crate::core::v_mul_b10_short;
-pub use crate::core::shift_add::ShiftAdd;
+use crate::steps::v_mul_b10_short;
+pub use crate::steps::ShiftAdd;
 
-mod core;
+mod steps;
 
 #[test]
 fn test() {

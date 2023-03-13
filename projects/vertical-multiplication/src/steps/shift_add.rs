@@ -1,11 +1,4 @@
-use std::fmt::{Display, Formatter};
-use std::ops::Mul;
-
-use num::BigInt;
-
-use crate::core::ShiftAdd;
-
-
+use super::*;
 
 impl Display for ShiftAdd {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
@@ -15,6 +8,13 @@ impl Display for ShiftAdd {
 }
 
 impl ShiftAdd {
+    pub fn new<R>(result: R, tail: usize) -> ShiftAdd where R: Into<BigInt> {
+        ShiftAdd {
+            result: result.into(),
+            tail_digits: tail,
+        }
+    }
+
     pub fn as_integer(&self) -> BigInt {
         BigInt::from(self.tailing_power()).mul(&self.result)
     }
