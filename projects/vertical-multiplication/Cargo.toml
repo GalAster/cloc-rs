@@ -1,0 +1,15 @@
+[package]
+name = "vertical-multiplication"
+version = "0.1.0"
+authors = ["Aster <192607617@qq.com>"]
+description = "Narcissistic number searcher"
+repository = "https://github.com/oovm/digit-invariant"
+documentation = "https://docs.rs/digit-invariant"
+readme = "Readme.md"
+license = "MPL-2.0"
+categories = ["algorithms"]
+edition = "2021"
+
+[dependencies]
+num = "0.4.0"
+itertools = "0.10.5"
