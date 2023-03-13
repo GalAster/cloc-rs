@@ -25,7 +25,7 @@ impl ShiftAdd {
         self.result.to_str_radix(base).len() + self.tail_digits
     }
     pub fn pretty_format(&self, width: usize, leading: &str, base: u32) -> String {
-        let space = " ".repeat(width - self.count_digits(base));
+        let space = " ".repeat(width - self.count_digits(base) - leading.len());
         let number = self.result.to_str_radix(base);
         let tail = ".".repeat(self.tail_digits);
         format!("{}{}{}{}", leading, space, number, tail)

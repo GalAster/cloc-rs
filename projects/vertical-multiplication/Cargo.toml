@@ -2,9 +2,9 @@
 name = "vertical-multiplication"
 version = "0.0.0"
 authors = ["Aster <192607617@qq.com>"]
-description = "Narcissistic number searcher"
+description = "Vertical multiplication step by step."
 repository = "https://github.com/oovm/digit-invariant"
-documentation = "https://docs.rs/digit-invariant"
+documentation = "https://docs.rs/vertical-multiplication"
 readme = "Readme.md"
 license = "MPL-2.0"
 categories = ["algorithms"]
