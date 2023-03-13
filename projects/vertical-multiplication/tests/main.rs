@@ -4,7 +4,7 @@ use std::io::Write;
 
 use num::BigInt;
 
-use vertical_multiplication::v_mul_b10_short;
+use vertical_multiplication::v_mul_short;
 
 #[test]
 fn ready() {
@@ -26,7 +26,7 @@ fn power2(n: &BigInt, step: usize) -> (BigInt, String) {
     let mut out = format!("## 第 {} 步\n", step);
     writeln!(out, "```js").unwrap();
     let i = n.pow(2);
-    writeln!(out, "{}", v_mul_b10_short(&n, &n)).unwrap();
+    writeln!(out, "{}", v_mul_short(&n, &n)).unwrap();
     writeln!(out, "```\n\n").unwrap();
     (i, out)
 }
