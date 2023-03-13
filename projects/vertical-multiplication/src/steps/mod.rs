@@ -8,6 +8,7 @@ use num::{BigInt, Integer, Signed, ToPrimitive};
 mod shift_add;
 mod steps;
 
+/// Get digits of a number in reverse order
 #[derive(Debug)]
 pub struct MultiplicationSteps {
     base: u32,
@@ -17,6 +18,7 @@ pub struct MultiplicationSteps {
     steps: Vec<ShiftAdd>,
 }
 
+/// Get digits of a number in reverse order
 #[derive(Debug)]
 pub struct ShiftAdd {
     /// result of two digits' multiplication
@@ -25,7 +27,7 @@ pub struct ShiftAdd {
     tail_digits: usize,
 }
 
-/// Vertical multiplication
+/// Vertical multiplication in details
 pub fn v_mul_detailed(a: &BigInt, b: &BigInt, base: u32) -> MultiplicationSteps {
     let lhs = get_digits_rev(a, base);
     let rhs = get_digits_rev(b, base);
@@ -38,6 +40,7 @@ pub fn v_mul_detailed(a: &BigInt, b: &BigInt, base: u32) -> MultiplicationSteps 
     steps
 }
 
+/// Vertical multiplication
 pub fn v_mul(a: &BigInt, b: &BigInt, base: u32) -> MultiplicationSteps {
     let rhs = get_digits_rev(b, base);
     let mut steps = MultiplicationSteps::new(a, b).with_base(base);

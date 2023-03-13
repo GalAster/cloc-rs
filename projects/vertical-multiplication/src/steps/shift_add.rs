@@ -8,22 +8,26 @@ impl Display for ShiftAdd {
 }
 
 impl ShiftAdd {
+    /// Create a new `ShiftAdd` step
     pub fn new<R>(result: R, tail: usize) -> ShiftAdd
     where
         R: Into<BigInt>,
     {
         ShiftAdd { result: result.into(), tail_digits: tail }
     }
-
+    /// Get the integer value of this step
     pub fn as_integer(&self, base: u32) -> BigInt {
         BigInt::from(self.tailing_power(base)).mul(&self.result)
     }
+    /// Get the power of the tailing digits
     pub fn tailing_power(&self, base: u32) -> BigInt {
         BigInt::from(base).pow(self.tail_digits as u32)
     }
+    /// Get the number of digits in this step
     pub fn count_digits(&self, base: u32) -> usize {
         self.result.to_str_radix(base).len() + self.tail_digits
     }
+    /// Format this step with a given width
     pub fn pretty_format(&self, width: usize, leading: &str, base: u32) -> String {
         let space = " ".repeat(width - self.count_digits(base) - leading.len());
         let number = self.result.to_str_radix(base);

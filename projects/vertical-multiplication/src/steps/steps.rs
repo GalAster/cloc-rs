@@ -23,17 +23,21 @@ impl Display for MultiplicationSteps {
 }
 
 impl MultiplicationSteps {
+    /// Create a new `MultiplicationSteps` instance
     pub fn new(a: &BigInt, b: &BigInt) -> MultiplicationSteps {
         Self { lhs: a.clone(), rhs: b.clone(), steps: vec![], result: a.mul(b), base: 10 }
     }
+    /// Set the base of this multiplication
     pub fn with_base(mut self, base: u32) -> Self {
+        assert!(base > 1);
         self.base = base;
         self
     }
+    /// Get the base of this multiplication
     pub fn push_step(&mut self, step: ShiftAdd) {
         self.steps.push(step);
     }
-
+    /// Get the number of digits in the largest step
     pub fn max_digits(&self) -> usize {
         self.steps.iter().map(|x| x.count_digits(self.base)).max().unwrap_or(0)
     }

@@ -9,5 +9,7 @@ fn ready() {
 
 #[test]
 fn test() {
+    println!("{}", v_mul(&BigInt::from(12), &BigInt::from(345), 2));
     println!("{}", v_mul(&BigInt::from(12), &BigInt::from(345), 10));
+    println!("{}", v_mul(&BigInt::from(12), &BigInt::from(345), 16));
 }
