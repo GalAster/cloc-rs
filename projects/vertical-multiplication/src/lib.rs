@@ -1,27 +1,31 @@
+use std::fmt::Display;
+use std::fmt::Write as _;
+use std::fs::File;
+use std::io::Write;
+
 use num::{BigInt, Integer, Signed, ToPrimitive};
+
+use crate::core::v_mul_b10_short;
+pub use crate::core::shift_add::ShiftAdd;
+
+mod core;
 
 #[test]
 fn test() {
-    v_mul_b10(&BigInt::from(123), &BigInt::from(456));
-}
-
-///
-fn v_mul_b10(a: &BigInt, b: &BigInt) {
-    let lhs = get_digits_rev(a, 10);
-    let rhs = get_digits_rev(b, 10);
-    println!("{:?}", lhs);
-    println!("{:?}", rhs);
-
-}
-
-
-fn get_digits_rev(num: &BigInt, base: usize) -> Vec<u8> {
-    let mut digits = Vec::new();
-    let mut num = num.clone();
-    while num.is_positive() {
-        let (q, r) = num.div_rem(&BigInt::from(base));
-        digits.push(r.to_u8().unwrap());
-        num = q;
+    let mut out = File::create("out.md").unwrap();
+    let mut n = BigInt::from(2);
+    for step in 1..=10 {
+        let (i, s) = power2(&n, step);
+        n = i;
+        out.write_all(s.as_bytes()).unwrap();
     }
-    digits
+}
+
+fn power2(n: &BigInt, step: usize) -> (BigInt, String) {
+    let mut out = format!("## 第 {} 步\n", step);
+    writeln!(out, "```js").unwrap();
+    let i = n.pow(2);
+    v_mul_b10_short(&n, &n, &mut out).unwrap();
+    writeln!(out, "```\n\n").unwrap();
+    (i, out)
 }
