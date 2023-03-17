@@ -3,6 +3,6 @@
 members = ["projects/*"]
 default-members = [
     "projects/narcissistic-number",
-    "projects/wolfram-debug",
+    #    "projects/wolfram-debug",
 ]
 
